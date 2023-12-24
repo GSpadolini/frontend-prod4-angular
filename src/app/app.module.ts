@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging'; // Importa las funciones de Firebase Messaging
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './commons/navbar/navbar.component';
@@ -18,9 +22,6 @@ import { SafePipe } from './safe.pipe';
 import { SafeUrlDirective } from '../app/directives/safe.directive';
 import { AboutComponent } from './about/about.component';
 import { Page404Component } from './page404/page404.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getStorage, provideStorage} from '@angular/fire/storage';
 import { AddDestinoComponent } from './add-destino/add-destino.component';
 import { environment } from '../environments/environment';
 import { EditDayComponent } from './edit-day/edit-day.component';
@@ -48,21 +49,22 @@ import { EditDayComponent } from './edit-day/edit-day.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: DaysComponent},
-      {path: 'day/:dayNum/video', component: PlayerComponent},
-      {path: 'day/:dayNum/edit', component: EditDayComponent},
-      {path: 'day/:dayNum', component: DetailComponent},
-      {path: 'about', component: AboutComponent},
-      {path: 'add-day', component: AddDestinoComponent},
-      {path: '**', component: Page404Component},
+      { path: '', component: DaysComponent },
+      { path: 'day/:dayNum/video', component: PlayerComponent },
+      { path: 'day/:dayNum/edit', component: EditDayComponent },
+      { path: 'day/:dayNum', component: DetailComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'add-day', component: AddDestinoComponent },
+      { path: '**', component: Page404Component },
     ]),
     ReactiveFormsModule,
+    // Proporciona la aplicación Firebase y configura Firestore, Storage y Messaging
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideStorage(()=> getStorage()),
+    provideStorage(() => getStorage()),
+    provideMessaging(() => getMessaging()),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-export class FilterModule { }
+export class AppModule {}
