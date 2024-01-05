@@ -1,9 +1,10 @@
 <app-navbar></app-navbar>
-<div *ngIf="message;">
-    <h1>{{ message.notification.title }}</h1>
-    <h2>{{ message.notification.body }}</h2>
-  </div><div *ngIf="!message;">
+<div *ngIf="message;" class="notifi">
+    <h3>{{ message.notification.title }}</h3>
+    <div>{{ message.notification.body }}</div>
+</div>
+<div *ngIf="!message;" class="notifi">
     No Message Arrived
-  </div>
+</div>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

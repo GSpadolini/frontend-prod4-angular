@@ -1,0 +1,10 @@
+.notifi, .notifi h3, .notifi div {
+    font-family: unset;
+    font-weight: bold;
+}
+.notifi {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    z-index: 9999;
+    padding: 1em;
+}
