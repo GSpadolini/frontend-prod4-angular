@@ -68,6 +68,7 @@ exports.docUpdated = functions.firestore
         body: "Se ha actualizado el día " + change?.after?.data()?.numero_dia
       },
       topic: "all"
+      // token: "fxxYPMZC_jOBdWx1GC9sYV:APA91bFko22NAmyBAXkO9s2_VZjsAPahI8IlEselajL8kwULhswSZwGTi-ihU5dSDFitum9tBYmsLEwXaogTg8vFn8kQN-5HQbdECTvcJoBRr3mVbePYcMbZP8-6R-PS6v5Vhx4Fuv1Z"
     };
 
     console.log("I'm going to send a message 2", msg);
