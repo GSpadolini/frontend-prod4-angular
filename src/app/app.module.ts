@@ -25,6 +25,10 @@ import { AddDestinoComponent } from './add-destino/add-destino.component';
 import { environment } from '../environments/environment';
 import { EditDayComponent } from './edit-day/edit-day.component';
 
+// Para recibir mensajes, necesitamos otra inicialización de firebase
+import { initializeApp as initializeApp2 } from "firebase/app";
+initializeApp2(environment.firebase);
+
 @NgModule({
   declarations: [
     AppComponent,
