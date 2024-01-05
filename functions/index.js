@@ -30,18 +30,21 @@
 //   response.send("Hello from Firebase!");
 // });
 
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 admin.initializeApp();
 
 exports.docWritten = functions.firestore
   .document("data/{dayId}")
   .onWrite((change, context) => {
     console.log("change", change);
+    let numeroDia = null;
+    if (change.after.exists) { numeroDia = change.after.data().numero_dia; }
+    else { numeroDia = change?.before?.data()?.numero_dia; }
     const msg = {
       notification: {
         title: "Día cambiado",
-        body: "Se ha cambiado el día " + change?.before?.data()?.numero_dia
+        body: "Se ha cambiado el día " + numeroDia
       },
       topic: "all"
     };
