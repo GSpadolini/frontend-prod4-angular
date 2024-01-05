@@ -37,11 +37,13 @@ admin.initializeApp();
 exports.docWritten = functions.firestore
   .document("data/{dayId}")
   .onWrite((change, context) => {
+    console.log("change", change);
     const msg = {
       notification: {
         title: "Día cambiado",
-        body: "Se ha cambiado el día " + change.before.data().numero_dia
-      }
+        body: "Se ha cambiado el día " + change?.before?.data()?.numero_dia
+      },
+      topic: "all"
     };
 
     console.log("I'm going to send a message 1", msg);
@@ -56,14 +58,16 @@ exports.docWritten = functions.firestore
       });
   });
 
-  exports.docUpdated = functions.firestore
+exports.docUpdated = functions.firestore
   .document("data/{dayId}")
   .onUpdate((change, context) => {
+    console.log("change", change);
     const msg = {
       notification: {
         title: "Día actualizado",
-        body: "Se ha actualizado el día " + change.after.data().numero_dia
-      }
+        body: "Se ha actualizado el día " + change?.after?.data()?.numero_dia
+      },
+      topic: "all"
     };
 
     console.log("I'm going to send a message 2", msg);
